@@ -479,3 +479,7 @@ $RECYCLE.BIN/
 *.lnk
 client-app/src/demo.ts
 client-app/src/DuckItem.tsx
+API/reactivities.db
+API/reactivities.db-shm
+API/reactivities.db-wal
+API/reactivities.db
