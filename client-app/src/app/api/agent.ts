@@ -40,7 +40,7 @@ axios.interceptors.response.use(
         toast.error('unauthorized');
         break;
       case 403:
-        toast.error('forbidden');
+      toast.error('forbidden');
         break;
       case 404:
         router.navigate('/notfound');
