@@ -5,7 +5,6 @@ import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import ActivityFilters from './ActivityFilters';
-import userStore from '../../../app/stores/userStore';
 
 export default observer(function ActivityDashboard() {
   const { activityStore, userStore } = useStore();
