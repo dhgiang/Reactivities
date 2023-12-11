@@ -27,7 +27,12 @@ export default observer(function ActivityDetailedSidebar({ activity: { attendees
           {attendees.map((attendee) => (
             <Item style={{ position: 'relative' }} key={attendee.username}>
               {attendee.username === host?.username && (
-                <Label key={attendee.username} style={{ position: 'absolute' }} color="orange" ribbon="right">
+                <Label
+                  key={attendee.username}
+                  style={{ position: 'absolute' }}
+                  color="orange"
+                  ribbon="right"
+                >
                   Host
                 </Label>
               )}
@@ -36,7 +41,7 @@ export default observer(function ActivityDetailedSidebar({ activity: { attendees
                 <Item.Header as="h3">
                   <Link to={`/profiles/${attendee.username}`}>{attendee.displayName}</Link>
                 </Item.Header>
-                <Item.Extra style={{ color: 'orange' }}>Following</Item.Extra>
+                {attendee.following && (<Item.Extra style={{ color: 'orange' }}>Following</Item.Extra>)}
               </Item.Content>
             </Item>
           ))}
