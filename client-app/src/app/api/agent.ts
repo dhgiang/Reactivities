@@ -5,6 +5,7 @@ import { router } from '../router/Routes';
 import { store } from '../stores/store';
 import { User, UserFormValues } from '../models/user';
 import { Photo, Profile } from '../models/profile';
+import { PaginatedResult } from '../models/pagination';
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
@@ -22,9 +23,14 @@ const sleep = (ms: number) => (response: AxiosResponse) =>
   new Promise<AxiosResponse>((resolve) => setTimeout(() => resolve(response), ms));
 
 axios.interceptors.response.use(
-  async (reponse) => {
+  async (response) => {
     sleep(1000);
-    return reponse;
+    const pagination = response.headers['pagination'];
+    if (pagination) {
+      response.data = new PaginatedResult(response.data, JSON.parse(pagination));
+      return response as AxiosResponse<PaginatedResult<any>>;
+    }
+    return response;
   },
   (error) => {
     const { data, status, config } = error.response as AxiosResponse;
@@ -72,7 +78,8 @@ const requests = {
 };
 
 const Activities = {
-  list: () => requests.get<Activity[]>('/activities'),
+  list: (params: URLSearchParams) =>
+    axios.get<PaginatedResult<Activity[]>>('/activities', { params }).then(responseBody),
   details: (id: string) => requests.get<Activity>(`/activities/${id}`),
   create: (activity: ActivityFormValues) => requests.post<void>('/activities', activity),
   update: (activity: ActivityFormValues) =>
