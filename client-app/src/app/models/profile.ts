@@ -33,3 +33,10 @@ export interface Photo {
   url: string;
   isMain: boolean;
 }
+
+export type UserActivity = {
+  id: string;
+  title: string;
+  category: string;
+  date: Date;
+}

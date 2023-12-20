@@ -24,7 +24,7 @@ export default observer(function ProfileFollowings() {
         <Grid.Column width={16}>
           <Card.Group itemsPerRow={4}>
             {followings.map((profile) => (
-              <ProfileCard key={profile.userName} profile={profile} />
+              <ProfileCard key={profile.username} profile={profile} />
             ))}
           </Card.Group>
         </Grid.Column>

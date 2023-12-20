@@ -31,7 +31,7 @@ export default function ActivityListItem({ activity }: Props) {
                 Hosted by{' '}
                 <Link to={`/profiles/${activity.hostUsername}`}>{activity.host?.displayName}</Link>
               </Item.Description>
-              {activity.isHost && (
+              {activity.isHost && !activity.isGoing && (
                 <Item.Description>
                   <Label basic color="orange">
                     You are hosting this activity
