@@ -16,7 +16,7 @@ export default observer(function HomePage() {
         </Header>
         {userStore.isLoggedIn ? (
           <>
-            <Header as="h2" inverted content="Welcome to Ducatech online event organizer" />
+            <Header as="h2" inverted content="Welcome to Ducatech Reactivities online event organizer" />
             <Button as={Link} to="/activities" size="huge" inverted content="Goto Activities" />
           </>
         ) : (
