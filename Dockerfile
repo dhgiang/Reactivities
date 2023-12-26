@@ -15,6 +15,7 @@ RUN dotnet restore "Reactivities.sln"
 # copy everything else and build
 COPY . .
 WORKDIR /app
+COPY "API/wwwroot" .
 RUN dotnet publish -c Release -o out
 
 # build a runtime image
