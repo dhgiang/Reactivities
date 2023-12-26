@@ -7,7 +7,7 @@ import { User, UserFormValues } from '../models/user';
 import { Photo, Profile, UserActivity } from '../models/profile';
 import { PaginatedResult } from '../models/pagination';
 
-axios.defaults.baseURL = 'http://localhost:5000/api';
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
@@ -24,7 +24,7 @@ const sleep = (ms: number) => (response: AxiosResponse) =>
 
 axios.interceptors.response.use(
   async (response) => {
-    sleep(1000);
+    if (import.meta.env.DEV) sleep(1000);
     const pagination = response.headers['pagination'];
     if (pagination) {
       response.data = new PaginatedResult(response.data, JSON.parse(pagination));
