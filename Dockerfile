@@ -9,6 +9,7 @@ COPY "Application/Application.csproj" "Application/Application.csproj"
 COPY "Persistence/Persistence.csproj" "Persistence/Persistence.csproj"
 COPY "Domain/Domain.csproj" "Domain/Domain.csproj"
 COPY "Infrastructure/Infrastructure.csproj" "Infrastructure/Infrastructure.csproj"
+COPY API/wwwroot /app
 RUN dotnet restore "Reactivities.sln"
 
 # copy everything else and build
